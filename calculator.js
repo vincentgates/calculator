@@ -26,7 +26,7 @@ function Calculator()
         main.innerHTML = '<div id="opWindow">0</div>';
         main.className = 'table';
         main.setAttribute('id', 'main');
-        document.getElementsByTagName('body')[0].appendChild(main);
+        document.body.appendChild(main);
 
         var btn = '+,-,x,/,^,1,2,3,4,5,6,7,8,9,0,clear,='.split(',');
         for (var b in btn) {
