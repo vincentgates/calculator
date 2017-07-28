@@ -18,6 +18,16 @@ function Calculator()
         /**
          * This will initiate the object.
          */
+        self.render();
     };
+
+    this.render = function() {
+        var main = document.createElement('div');
+        main.innerHTML = '<div id="opWindow">0</div>';
+        main.className = 'table';
+        main.setAttribute('id', 'main');
+        document.getElementsByTagName('body')[0].appendChild(main);
+    };
+
 
 }
