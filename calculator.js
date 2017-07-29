@@ -32,8 +32,14 @@ function Calculator()
         var btn = '+,-,x,/,^,1,2,3,4,5,6,7,8,9,0,clear,='.split(',');
         for (var b in btn) {
             var newElement = document.createElement('button');
-            newElement.className = 'third';
             newElement.innerHTML = btn[b];
+            if (btn[b] === 'clear') {
+                newElement.className = 'clear';
+            }else if(btn[b] === '='){
+                newElement.className = 'equals';
+            }else{
+                newElement.className = 'third';
+            }
             main.appendChild(newElement);
         }
 
@@ -41,7 +47,6 @@ function Calculator()
     this.run = function (){
         var screen   = document.getElementById('opWindow');
         var elements = document.getElementsByTagName('button');
-        var clear    = document.getElementsByClassName('clear');
 
         addtocurrentvalue = function(i){
             return function(){
@@ -55,6 +60,12 @@ function Calculator()
             };
         }
 
+        clear = function () {
+            return function () {
+                screen.innerHTML = '';
+            };
+        }
+
         calculate = function(i) {
             return function () {
                 screen.innerHTML = eval(screen.innerHTML);
@@ -65,15 +76,13 @@ function Calculator()
             if(elements[i].innerHTML === '='){
                 elements[i].addEventListener('click', calculate(i));
             }
+            if(elements[i].innerHTML === 'clear'){
+                elements[i].addEventListener('click', clear(i));
+            }
             else{
                 elements[i].addEventListener('click', addtocurrentvalue(i));
             }
         }
-
-        clear.onclick = function () {
-            screen.innerHTML = '0';
-        };
-
 
     };
 
