@@ -54,6 +54,9 @@ function Calculator()
                     screen.innerHTML  +=  '/' ;
                 }else if(elements[i].innerHTML === 'x'){
                     screen.innerHTML += '*';
+                }
+                else if (elements[i].innerHTML === '^') {
+                    screen.innerHTML  +=  '**' ;
                 }else{
                     screen.innerHTML  += elements[i].innerHTML;
                 }
