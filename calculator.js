@@ -1,7 +1,7 @@
 /**
  * @description Calculator prototype.
  * @constructor Calculator
- * @version 1.0.0
+ * @version 1.0.1
  * @author Vincent Gates
  */
 function Calculator()
@@ -62,8 +62,10 @@ function Calculator()
             return function(){
                 if (buttons[i].innerHTML === '÷') {
                     opWindow.innerHTML  +=  '/' ;
-                }else if(buttons[i].innerHTML === 'x'){
+                }else if(buttons[i].innerHTML === '×') {
                     opWindow.innerHTML += '*';
+                }else if(buttons[i].innerHTML === '−'){
+                    opWindow.innerHTML += '-';
                 }
                 else if (buttons[i].innerHTML === '^') {
                     opWindow.innerHTML  +=  '**' ;
