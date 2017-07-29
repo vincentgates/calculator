@@ -62,8 +62,10 @@ function Calculator()
             return function(){
                 if (buttons[i].innerHTML === '÷') {
                     opWindow.innerHTML  +=  '/' ;
-                }else if(buttons[i].innerHTML === 'x'){
+                }else if(buttons[i].innerHTML === '×') {
                     opWindow.innerHTML += '*';
+                }else if(buttons[i].innerHTML === '−'){
+                    opWindow.innerHTML += '-';
                 }
                 else if (buttons[i].innerHTML === '^') {
                     opWindow.innerHTML  +=  '**' ;
