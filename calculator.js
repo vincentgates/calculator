@@ -22,6 +22,9 @@ function Calculator()
         self.run();
     };
 
+    /**
+     * @description Render creates/builds the elements on screen.
+     */
     this.render = function() {
         var main = document.createElement('div');
         main.innerHTML = '<div id="opWindow"></div>';
@@ -29,62 +32,66 @@ function Calculator()
         main.setAttribute('id', 'main');
         document.body.appendChild(main);
 
-        var btn = '+,-,x,/,^,1,2,3,4,5,6,7,8,9,0,clear,='.split(',');
+        var btn = '+,−,×,/,^,1,2,3,4,5,6,7,8,9,0,clear,='.split(',');
         for (var b in btn) {
-            var newElement = document.createElement('button');
-            newElement.innerHTML = btn[b];
+            var newButton = document.createElement('button');
+            newButton.innerHTML = btn[b];
             if (btn[b] === 'clear') {
-                newElement.className = 'clear';
+                newButton.className = 'clear';
             }else if(btn[b] === '='){
-                newElement.className = 'equals';
+                newButton.className = 'equals';
             }else{
-                newElement.className = 'third';
+                newButton.className = 'third';
             }
-            main.appendChild(newElement);
+            main.appendChild(newButton);
         }
 
     };
+
+    /**
+     * @description Run function adds interactive component.
+     */
     this.run = function (){
-        var screen   = document.getElementById('opWindow');
-        var elements = document.getElementsByTagName('button');
-        screen.style.height='1em';
+        var opWindow   = document.getElementById('opWindow');
+        var buttons = document.getElementsByTagName('button');
+        opWindow.style.height='1em';
 
         addtocurrentvalue = function(i){
             return function(){
-                if (elements[i].innerHTML === '÷') {
-                    screen.innerHTML  +=  '/' ;
-                }else if(elements[i].innerHTML === 'x'){
-                    screen.innerHTML += '*';
+                if (buttons[i].innerHTML === '÷') {
+                    opWindow.innerHTML  +=  '/' ;
+                }else if(buttons[i].innerHTML === 'x'){
+                    opWindow.innerHTML += '*';
                 }
-                else if (elements[i].innerHTML === '^') {
-                    screen.innerHTML  +=  '**' ;
+                else if (buttons[i].innerHTML === '^') {
+                    opWindow.innerHTML  +=  '**' ;
                 }else{
-                    screen.innerHTML  += elements[i].innerHTML;
+                    opWindow.innerHTML  += buttons[i].innerHTML;
                 }
             };
         }
 
         clear = function () {
             return function () {
-                screen.innerHTML = '';
+                opWindow.innerHTML = '';
             };
         }
 
         calculate = function(i) {
             return function () {
-                screen.innerHTML = eval(screen.innerHTML);
+                opWindow.innerHTML = eval(opWindow.innerHTML);
             };
         }
 
-        for(var i=0;i<elements.length;i+=1){
-            if(elements[i].innerHTML === '='){
-                elements[i].addEventListener('click', calculate(i));
+        for(var i=0;i<buttons.length;i+=1){
+            if(buttons[i].innerHTML === '='){
+                buttons[i].addEventListener('click', calculate(i));
             }
-            if(elements[i].innerHTML === 'clear'){
-                elements[i].addEventListener('click', clear(i));
+            if(buttons[i].innerHTML === 'clear'){
+                buttons[i].addEventListener('click', clear(i));
             }
             else{
-                elements[i].addEventListener('click', addtocurrentvalue(i));
+                buttons[i].addEventListener('click', addtocurrentvalue(i));
             }
         }
 
