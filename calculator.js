@@ -24,7 +24,7 @@ function Calculator()
 
     this.render = function() {
         var main = document.createElement('div');
-        main.innerHTML = '<div id="opWindow">0</div>';
+        main.innerHTML = '<div id="opWindow"></div>';
         main.className = 'table';
         main.setAttribute('id', 'main');
         document.body.appendChild(main);
@@ -47,6 +47,7 @@ function Calculator()
     this.run = function (){
         var screen   = document.getElementById('opWindow');
         var elements = document.getElementsByTagName('button');
+        screen.style.height='1em';
 
         addtocurrentvalue = function(i){
             return function(){
